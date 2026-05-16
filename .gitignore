@@ -1,0 +1,24 @@
+# macOS
+.DS_Store
+
+# 컴파일 결과물
+*.o
+*.out
+*.exe
+a.out
+
+# 실행 파일 (확장자 없는 컴파일 산출물)
+main
+code-blue
+
+# IDE/에디터 설정
+.vscode/
+.idea/
+
+# 백업 파일
+*~
+*.bak
+*.swp
+
+# 데이터 파일은 일단 추적 (작은 CSV는 올려도 OK)
+# data/*.csv  ← 필요시 주석 해제
