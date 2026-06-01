@@ -45,8 +45,9 @@ clang -I include src/*.c -o code-blue
 
 ## 팀원
 
-- parkjuha714
-- (팀원 B)
+- 박주하
+- 김지민
+- 노나영
 
 ## 개발 기간
 
