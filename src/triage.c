@@ -5,32 +5,37 @@
 // KTAS 1단계 (최위급/소생) 키워드
 static const char *ktas_1_keywords[] = {
     "심정지", "심장정지", "의식없음", "무호흡",
-    "호흡정지", "대량출혈", "쇼크", "혼수"};
-static const int ktas_1_count = 8;
+    "호흡정지", "대량출혈", "쇼크", "혼수",
+    "심정지", "숨을 안", "맥박없", "반응없"};
+static const int ktas_1_count = 12;
 
 // KTAS 2단계 (긴급) 키워드
 static const char *ktas_2_keywords[] = {
     "가슴통증", "흉통", "호흡곤란", "심한출혈",
-    "마비", "발작", "경련", "의식저하", "심한복통"};
-static const int ktas_2_count = 9;
+    "마비", "발작", "경련", "의식저하", "심한복통",
+    "가슴이 아", "숨이 차", "피를 토", "토혈", "각혈", "심한 출혈"};
+static const int ktas_2_count = 15;
 
 // KTAS 3단계 (응급) 키워드
 static const char *ktas_3_keywords[] = {
     "복통", "고열", "구토", "탈수",
-    "심한두통", "호흡불편", "어지러움"};
-static const int ktas_3_count = 7;
+    "심한두통", "호흡불편", "어지러움",
+    "배가 아", "배에서 피", "출혈", "골절", "부러", "심한 통증", "고열"};
+static const int ktas_3_count = 14;
 
 // KTAS 4단계 (준응급) 키워드
 static const char *ktas_4_keywords[] = {
     "두통", "발열", "기침", "설사",
-    "근육통", "관절통", "요통"};
-static const int ktas_4_count = 7;
+    "근육통", "관절통", "요통",
+    "머리가 아", "열이 나", "메스꺼", "구역", "삐", "염좌", "허리"};
+static const int ktas_4_count = 14;
 
 // KTAS 5단계 (비응급) 키워드
 static const char *ktas_5_keywords[] = {
     "감기", "찰과상", "타박상", "가벼운상처",
-    "콧물", "재채기", "피로"};
-static const int ktas_5_count = 7;
+    "콧물", "재채기", "피로",
+    "긁힘", "멍", "가려움", "코막힘", "목아픔", "피곤"};
+static const int ktas_5_count = 13;
 
 // 자동 트리아지 함수 (선형 탐색)
 int auto_triage(const char *symptom)

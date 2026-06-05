@@ -4,7 +4,7 @@
 #include "../include/fileio.h"
 
 /* ─────────────────────────────────────────────
-   ui.c  –  나영 담당 UI
+   ui.c  –  UI / 메뉴 출력
    - 진료 완료 처리 (push)
    - 되돌리기 (undo / pop)
    - peek / 기록 조회
@@ -21,13 +21,13 @@ void ui_print_main_menu(void)
     ui_divider();
     printf("  ██  응급실 환자 접수 및 진료 관리 시스템  ██\n");
     ui_divider();
-    printf("  [1] 환자 접수          (queue 담당 - 주하)\n");
-    printf("  [2] 다음 환자 호출     (pqueue 담당 - 지민)\n");
-    printf("  [3] 진료 완료 처리     ← 스택 push\n");
-    printf("  [4] 되돌리기           ← 스택 pop  (undo)\n");
-    printf("  [5] 최근 진료 확인     ← 스택 peek\n");
+    printf("  [1] 환자 접수\n");
+    printf("  [2] 다음 환자 호출\n");
+    printf("  [3] 진료 완료 처리\n");
+    printf("  [4] 되돌리기\n");
+    printf("  [5] 최근 진료 확인\n");
     printf("  [6] 진료 완료 기록 조회\n");
-    printf("  [7] 대기 현황 조회     (queue 담당 - 주하)\n");
+    printf("  [7] 대기 현황 조회\n");
     printf("  [8] 파일 저장\n");
     printf("  [9] 파일 불러오기\n");
     printf("  [0] 종료\n");
@@ -39,7 +39,7 @@ void ui_print_main_menu(void)
 void ui_push_treatment(Stack *s, int *next_id)
 {
     ui_divider();
-    printf("  ▶ 진료 완료 처리 (스택 push)\n\n");
+    printf("  ▶ 진료 완료 처리\n\n");
 
     if (stack_is_full(s))
     {
@@ -62,7 +62,7 @@ void ui_push_treatment(Stack *s, int *next_id)
 void ui_undo_treatment(Stack *s)
 {
     ui_divider();
-    printf("  ▶ 되돌리기 - 최근 진료 기록 취소 (스택 pop)\n\n");
+    printf("  ▶ 되돌리기 - 최근 진료 기록 취소\n\n");
 
     if (stack_is_empty(s))
     {
@@ -96,7 +96,7 @@ void ui_undo_treatment(Stack *s)
 void ui_peek_treatment(const Stack *s)
 {
     ui_divider();
-    printf("  ▶ 최근 진료 기록 확인 (스택 peek)\n\n");
+    printf("  ▶ 최근 진료 기록 확인\n\n");
 
     Patient p;
     if (!stack_peek(s, &p))
@@ -122,7 +122,7 @@ void ui_show_treatment_log(const Stack *s)
 void ui_save(const Stack *s)
 {
     ui_divider();
-    printf("  ▶ 데이터 저장 (%s)\n\n", DATA_FILE);
+    printf("  ▶ 데이터 저장\n\n");
 
     int n = save_data(s);
     if (n < 0)
@@ -131,7 +131,7 @@ void ui_save(const Stack *s)
     }
     else
     {
-        printf("  ✔ %d개 기록을 '%s'에 저장했습니다.\n", n, DATA_FILE);
+        printf("  ✔ %d개 기록을 저장했습니다.\n", n);
     }
 }
 
@@ -139,7 +139,7 @@ void ui_save(const Stack *s)
 void ui_load(Stack *s)
 {
     ui_divider();
-    printf("  ▶ 데이터 불러오기 (%s)\n\n", DATA_FILE);
+    printf("  ▶ 데이터 불러오기\n\n");
 
     int n = load_data(s);
     if (n < 0)

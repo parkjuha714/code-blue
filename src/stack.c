@@ -74,22 +74,18 @@ void stack_print(const Stack *s)
         printf("  (진료 기록이 없습니다)\n");
         return;
     }
-    printf("  %-4s %-12s %-6s %-20s %s\n",
-           "순번", "이름", "나이", "증상", "중증도");
-    printf("  ─────────────────────────────────────────────\n");
-    int i;
     int rank = 1;
-    for (i = s->top; i >= 0; i--)
+    for (int i = s->top; i >= 0; i--)
     {
-        printf("  %-4d %-12s %-6d %-20s %d\n",
+        printf("  %d. [접수번호 %d] %s (%d세) - %s\n",
                rank++,
+               s->data[i].id,
                s->data[i].name,
                s->data[i].age,
-               s->data[i].symptom,
-               s->data[i].severity);
+               s->data[i].symptom);
+        printf("     → KTAS %d단계\n", s->data[i].severity);
     }
 }
-
 int stack_size(const Stack *s)
 {
     return s->top + 1;

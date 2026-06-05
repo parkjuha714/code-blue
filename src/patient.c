@@ -11,9 +11,9 @@ Patient input_patient(int id, int arrival_time)
     p.id = id;
     p.arrival_time = arrival_time;
 
-    // 이름 입력
+    // 이름 입력 (공백 없이 한 단어)
     printf("환자 이름을 입력하세요: ");
-    scanf(" %31[^\n]", p.name);
+    scanf("%31s", p.name);
 
     // 나이 입력
     printf("나이를 입력하세요: ");
@@ -25,7 +25,8 @@ Patient input_patient(int id, int arrival_time)
     }
 
     // 증상 입력
-    printf("증상을 입력하세요: ");
+    printf("증상을 입력하세요\n");
+    printf("  (예: 흉통, 호흡곤란, 복통, 두통, 발열, 출혈, 골절, 감기 등): ");
     scanf(" %127[^\n]", p.symptom);
 
     // 자동 트리아지: 증상 → KTAS 단계 자동 분류
