@@ -22,3 +22,4 @@ code-blue
 
 # 데이터 파일은 일단 추적 (작은 CSV는 올려도 OK)
 # data/*.csv  ← 필요시 주석 해제
+code_blue
