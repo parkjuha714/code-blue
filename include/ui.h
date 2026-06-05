@@ -1,7 +1,7 @@
 #ifndef UI_H
 #define UI_H
 
-#include "스택.h"
+#include "stack.h"
 
 // ── 나영 담당 UI 함수 ──────────────────────────
 

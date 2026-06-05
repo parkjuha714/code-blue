@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <time.h>
-#include "화면.h"
-#include "파일입출력.h"
+#include "../include/ui.h"
+#include "../include/fileio.h"
 
 /* ─────────────────────────────────────────────
    ui.c  –  나영 담당 UI
@@ -11,11 +11,13 @@
    - 파일 저장/불러오기
    ───────────────────────────────────────────── */
 
-void ui_divider(void) {
+void ui_divider(void)
+{
     printf("\n  ══════════════════════════════════════════\n");
 }
 
-void ui_print_main_menu(void) {
+void ui_print_main_menu(void)
+{
     ui_divider();
     printf("  ██  응급실 환자 접수 및 진료 관리 시스템  ██\n");
     ui_divider();
@@ -34,21 +36,19 @@ void ui_print_main_menu(void) {
 }
 
 /* ── 진료 완료 처리: 환자 정보 입력 후 push ── */
-void ui_push_treatment(Stack *s, int *next_id) {
+void ui_push_treatment(Stack *s, int *next_id)
+{
     ui_divider();
     printf("  ▶ 진료 완료 처리 (스택 push)\n\n");
 
-    if (stack_is_full(s)) {
+    if (stack_is_full(s))
+    {
         printf("  ⚠ 스택이 가득 찼습니다 (최대 %d개).\n", STACK_MAX);
         printf("    가장 오래된 기록을 자동으로 제거하고 저장합니다.\n\n");
     }
 
-    Patient p;
-    p.id = *next_id;
-    p.arrival_time = (int)time(NULL);
-
     printf("  진료 완료 환자 정보를 입력하세요.\n");
-    input_patient(&p);
+    Patient p = input_patient(*next_id, (int)time(NULL));
 
     stack_push(s, p);
     (*next_id)++;
@@ -59,11 +59,13 @@ void ui_push_treatment(Stack *s, int *next_id) {
 }
 
 /* ── 되돌리기: pop ── */
-void ui_undo_treatment(Stack *s) {
+void ui_undo_treatment(Stack *s)
+{
     ui_divider();
     printf("  ▶ 되돌리기 - 최근 진료 기록 취소 (스택 pop)\n\n");
 
-    if (stack_is_empty(s)) {
+    if (stack_is_empty(s))
+    {
         printf("  ⚠ 되돌릴 기록이 없습니다. 스택이 비어 있습니다.\n");
         return;
     }
@@ -77,7 +79,8 @@ void ui_undo_treatment(Stack *s) {
 
     char ch;
     scanf(" %c", &ch);
-    if (ch != 'y' && ch != 'Y') {
+    if (ch != 'y' && ch != 'Y')
+    {
         printf("  취소 작업을 중단했습니다.\n");
         return;
     }
@@ -90,12 +93,14 @@ void ui_undo_treatment(Stack *s) {
 }
 
 /* ── peek: 꺼내지 않고 확인 ── */
-void ui_peek_treatment(const Stack *s) {
+void ui_peek_treatment(const Stack *s)
+{
     ui_divider();
     printf("  ▶ 최근 진료 기록 확인 (스택 peek)\n\n");
 
     Patient p;
-    if (!stack_peek(s, &p)) {
+    if (!stack_peek(s, &p))
+    {
         printf("  ⚠ 기록이 없습니다. 스택이 비어 있습니다.\n");
         return;
     }
@@ -105,7 +110,8 @@ void ui_peek_treatment(const Stack *s) {
 }
 
 /* ── 기록 전체 조회 ── */
-void ui_show_treatment_log(const Stack *s) {
+void ui_show_treatment_log(const Stack *s)
+{
     ui_divider();
     printf("  ▶ 진료 완료 기록 전체 조회 (최신순)\n\n");
     printf("  총 %d개 기록 (최대 %d개 유지)\n\n", stack_size(s), STACK_MAX);
@@ -113,29 +119,39 @@ void ui_show_treatment_log(const Stack *s) {
 }
 
 /* ── 파일 저장 ── */
-void ui_save(const Stack *s) {
+void ui_save(const Stack *s)
+{
     ui_divider();
     printf("  ▶ 데이터 저장 (%s)\n\n", DATA_FILE);
 
     int n = save_data(s);
-    if (n < 0) {
+    if (n < 0)
+    {
         printf("  ✘ 저장에 실패했습니다.\n");
-    } else {
+    }
+    else
+    {
         printf("  ✔ %d개 기록을 '%s'에 저장했습니다.\n", n, DATA_FILE);
     }
 }
 
 /* ── 파일 불러오기 ── */
-void ui_load(Stack *s) {
+void ui_load(Stack *s)
+{
     ui_divider();
     printf("  ▶ 데이터 불러오기 (%s)\n\n", DATA_FILE);
 
     int n = load_data(s);
-    if (n < 0) {
+    if (n < 0)
+    {
         printf("  ✘ 불러오기에 실패했습니다.\n");
-    } else if (n == 0) {
+    }
+    else if (n == 0)
+    {
         printf("  저장된 데이터가 없습니다.\n");
-    } else {
+    }
+    else
+    {
         printf("  ✔ %d개 기록을 불러왔습니다.\n", n);
     }
 }

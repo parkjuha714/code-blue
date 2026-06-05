@@ -1,7 +1,7 @@
 #ifndef FILE_IO_H
 #define FILE_IO_H
 
-#include "스택.h"
+#include "stack.h"
 
 #define DATA_FILE "data/patients.csv"
 

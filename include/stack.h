@@ -1,14 +1,15 @@
 #ifndef STACK_H
 #define STACK_H
 
-#include "환자.h"
+#include "patient.h"
 
-#define STACK_MAX 10    // 제안서: 최대 10개 기록 유지
+#define STACK_MAX 10 // 제안서: 최대 10개 기록 유지
 
 // 스택 구조체
-typedef struct {
+typedef struct
+{
     Patient data[STACK_MAX];
-    int top;            // -1이면 빈 스택
+    int top; // -1이면 빈 스택
 } Stack;
 
 // 스택 초기화
